@@ -30,6 +30,13 @@ img {
     padding-top: 30px;
 }
 
+.hide {
+    display: none;
+}
+
+.hidewindow {
+    display: none;
+}
 /*Placement*/
 
 .titlenav {
