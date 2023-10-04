@@ -47,6 +47,49 @@ next.addEventListener("click", porscheImg);
 prev.addEventListener("click", porscheImg);
 };
 
+//Reset Albums to first Image
+function albumReset(){
+    const toyotaWindow = document.querySelector(".toyotaWindow");
+    const toyotaCars = toyotaWindow.querySelectorAll("img");
+    const bmwWindow = document.querySelector(".bmwWindow");
+    const bmwCars = bmwWindow.querySelectorAll("img");
+    const porscheWindow = document.querySelector(".porscheWindow");
+    const porscheCars = porscheWindow.querySelectorAll("img");
+    let i = 0;
+
+    //Reset Toyota to first img
+    toyotaCars.forEach((toyotaCars) => {
+        toyotaCars.classList.add("hide");
+    });
+    toyotaCars[0].classList.remove("hide");
+
+    toyotaCars.forEach((toyotaCars) => {
+        toyotaCars.classList.remove("toyotaImg");
+    });
+    toyotaCars[0].classList.add("toyotaImg");
+
+    //Reset BMW to first img
+    bmwCars.forEach((bmwCars) => {
+        bmwCars.classList.add("hide");
+    });
+    bmwCars[0].classList.remove("hide");
+
+    bmwCars.forEach((bmwCars) => {
+        bmwCars.classList.remove("bmwImg");
+    });
+    bmwCars[0].classList.add("bmwImg");
+
+    //Reset Porsche to first img
+    porscheCars.forEach((porscheCars) => {
+        porscheCars.classList.add("hide");
+    });
+    porscheCars[0].classList.remove("hide");
+
+    porscheCars.forEach((porscheCars) => {
+        porscheCars.classList.remove("porscheImg");
+    });
+    porscheCars[0].classList.add("porscheImg");
+}
 
 //Album Changing
 function albumChange(e) {
@@ -54,13 +97,13 @@ function albumChange(e) {
     const toyotaWindow = document.querySelector(".toyotaWindow");
     const bmwWindow = document.querySelector(".bmwWindow");
     const porscheWindow = document.querySelector(".porscheWindow");
-    
 
     if (e.target.id === 'toyota') {
         carBrand.innerHTML = "Toyota";
         toyotaWindow.classList.remove("hidewindow");
         bmwWindow.classList.add("hidewindow");
         porscheWindow.classList.add("hidewindow");
+        albumReset();
     }
 
     if (e.target.id === 'bmw') {
@@ -68,6 +111,7 @@ function albumChange(e) {
         toyotaWindow.classList.add("hidewindow");
         bmwWindow.classList.remove("hidewindow");
         porscheWindow.classList.add("hidewindow");
+        albumReset();
     }
 
     if (e.target.id === 'porsche') {
@@ -75,6 +119,7 @@ function albumChange(e) {
         toyotaWindow.classList.add("hidewindow");
         bmwWindow.classList.add("hidewindow");
         porscheWindow.classList.remove("hidewindow");
+        albumReset();
     }
     
 }
@@ -87,7 +132,7 @@ function toyotaImg(e) {
     const toyotaCars = toyotaWindow.querySelectorAll("img");
     let toyotaImg = document.querySelector(".toyotaImg");
     let nextImg = "";
-    
+
     if(e.target.id === 'next') {
         nextImg = toyotaImg.nextElementSibling;
     }
