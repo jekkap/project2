@@ -43,7 +43,7 @@ img {
     text-align: center;
 }
 
-ul {
+.btnlist {
     text-align: center;
     padding-right: 30px;
 }
@@ -98,7 +98,7 @@ ul {
         padding-top: 30px;
     }
 
-    ul {
+    .btnlist {
         display: flex;
         justify-content: space-evenly;
         padding-right: 30px;
