@@ -1,8 +1,6 @@
 document.addEventListener('DOMContentLoaded', init);
 
 function init(){
-const next = document.getElementById("next");
-const prev = document.getElementById("prev");
 const toyotaWindow = document.querySelector(".toyotaWindow");
 const toyotaCars = toyotaWindow.querySelectorAll("img");
 const bmwWindow = document.querySelector(".bmwWindow");
@@ -13,6 +11,14 @@ const toyotaBtn = document.getElementById("toyota");
 const bmwBtn = document.getElementById("bmw");
 const porscheBtn = document.getElementById("porsche");
 
+//Create Next and Previous buttons
+const nextPrevBtns = document.createElement("div");
+const container = document.querySelector(".container")
+nextPrevBtns.className = 'nextprevplacement';
+nextPrevBtns.innerHTML = '<button id="prev" class="albumbtn prev stop">Previous</button><button id="next" class="albumbtn next stop">Next</button>';
+container.append(nextPrevBtns);
+const next = nextPrevBtns.querySelector(".next");
+const prev = nextPrevBtns.querySelector(".prev");
 
 //Hide Toyota Images
 toyotaCars.forEach((toyotaCars) => {
@@ -45,7 +51,19 @@ next.addEventListener("click", bmwImg);
 prev.addEventListener("click", bmwImg);
 next.addEventListener("click", porscheImg);
 prev.addEventListener("click", porscheImg);
+next.addEventListener("click", stopInterval);
+prev.addEventListener("click", stopInterval);
+
 };
+
+//Create and set image intervals
+let tInterval = ''
+let bInterval = ''
+let pInterval = ''
+
+tInterval = setInterval(toyotaInterval, 2000)
+bInterval = setInterval(bmwInterval, 2000)
+pInterval = setInterval(porscheInterval, 2000)
 
 //Reset Albums to first Image
 function albumReset(){
@@ -55,7 +73,6 @@ function albumReset(){
     const bmwCars = bmwWindow.querySelectorAll("img");
     const porscheWindow = document.querySelector(".porscheWindow");
     const porscheCars = porscheWindow.querySelectorAll("img");
-    let i = 0;
 
     //Reset Toyota to first img
     toyotaCars.forEach((toyotaCars) => {
@@ -121,7 +138,14 @@ function albumChange(e) {
         porscheWindow.classList.remove("hidewindow");
         albumReset();
     }
-    
+}
+
+//Stops Img Interval
+function stopInterval() {
+    console.log("Stop Interval")
+    clearInterval(tInterval);
+    clearInterval(bInterval);
+    clearInterval(pInterval);
 }
 
 //Toyota Image Change
@@ -215,6 +239,72 @@ function porscheImg(e) {
     if (!nextImg) {
         nextImg = porscheCars[porscheCars.length - 1];
     }
+
+    if (nextImg.nodeName !== "IMG") {
+        nextImg = porscheCars[0];
+    }
+
+    nextImg.classList.toggle("hide")
+    nextImg.classList.toggle("porscheImg")
+
+    console.log(nextImg)
+}
+
+//Interval for Toyota
+function toyotaInterval(){
+    const toyotaWindow = document.querySelector(".toyotaWindow");
+    const toyotaCars = toyotaWindow.querySelectorAll("img");
+    let toyotaImg = document.querySelector(".toyotaImg");
+    let nextImg = "";
+
+    nextImg = toyotaImg.nextElementSibling;
+
+    toyotaImg.classList.toggle("hide")
+    toyotaImg.classList.toggle("toyotaImg")
+
+    if (nextImg.nodeName !== "IMG") {
+        nextImg = toyotaCars[0];
+    }
+
+    nextImg.classList.toggle("hide")
+    nextImg.classList.toggle("toyotaImg")
+
+    console.log(nextImg)
+}
+
+//Interval for BMW
+function bmwInterval(){
+    const bmwWindow = document.querySelector(".bmwWindow");
+    const bmwCars = bmwWindow.querySelectorAll("img");
+    let bmwImg = document.querySelector(".bmwImg");
+    let nextImg = "";
+
+    nextImg = bmwImg.nextElementSibling;
+
+    bmwImg.classList.toggle("hide")
+    bmwImg.classList.toggle("bmwImg")
+
+    if (nextImg.nodeName !== "IMG") {
+        nextImg = bmwCars[0];
+    }
+
+    nextImg.classList.toggle("hide")
+    nextImg.classList.toggle("bmwImg")
+
+    console.log(nextImg)
+}
+
+//Interval for Porsche
+function porscheInterval(){
+    const porscheWindow = document.querySelector(".porscheWindow");
+    const porscheCars = porscheWindow.querySelectorAll("img");
+    let porscheImg = document.querySelector(".porscheImg");
+    let nextImg = "";
+
+    nextImg = porscheImg.nextElementSibling;
+
+    porscheImg.classList.toggle("hide")
+    porscheImg.classList.toggle("porscheImg")
 
     if (nextImg.nodeName !== "IMG") {
         nextImg = porscheCars[0];
